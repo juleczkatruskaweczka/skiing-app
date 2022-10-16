@@ -17,3 +17,9 @@ czemu będzie on mógł podjąć natychmiastowe działanie.
   - Stopień trudności 
   - Poglądowy schemat trasy
   - Możliwość zamknięcia/otwarcia poszczególnej trasy
+
+
+
+
+
+Link do moqups https://app.moqups.com/OW83xLPFC6KDMsVhhDBmLGjbWjPOKEDu/view/page/ad64222d5
