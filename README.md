@@ -22,4 +22,5 @@ czemu będzie on mógł podjąć natychmiastowe działanie.
 
 
 
-Link do moqups https://app.moqups.com/OW83xLPFC6KDMsVhhDBmLGjbWjPOKEDu/view/page/ad64222d5
+Link do [Moqups] (https://app.moqups.com/OW83xLPFC6KDMsVhhDBmLGjbWjPOKEDu/view/page/ad64222d5)
+Link do [Lucid](https://lucid.app/lucidchart/151bb62c-631b-46ad-a8dc-fad8e46bd2b2/edit?invitationId=inv_791b738b-a51a-4f4f-9658-9591cae24d29&page=0_0#)
