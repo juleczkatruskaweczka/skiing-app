@@ -14,8 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
+from Polyski_app.views import help,users,witam,form_name_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('help/',help),
+    path('',form_name_view)
 ]

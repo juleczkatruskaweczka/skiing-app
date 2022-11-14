@@ -1,0 +1,50 @@
+h1{
+    color: blue;
+    font-size:24px;
+}
+h2{
+    color: skyblue;
+}
+
+table,th,td{
+    border: 2px solid grey;
+    position:center
+}
+th{
+    color:black;
+    border:2px solid grey
+}
+td{
+    color:black;
+    border:2px solid grey;
+}
+body {
+  background-image:url(/static/images/background.jpg);
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position:center;
+  background-attachment:fixed;
+  height:100%;
+  width:100%;
+  color: rgba(255, 255, 255, 0.94);
+
+}
+.square-input{
+    padding: 4px;
+    background-color: skyblue;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    background-position:center;
+    margin-right: 500px;
+    margin-left: 500px;
+    margin-top: 10px;
+    font-size:30px
+
+}
+.button{
+    font-size:18px;
+}
+.table1{
+font-size:18px;
+}

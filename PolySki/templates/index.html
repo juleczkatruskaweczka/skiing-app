@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{%load static %}
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>PolySki</title>
+    </head>
+    <body>
+        <h1>Hello this is PolySki!</h1>
+        <h2>Here are your access records:</h2>
+        <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+        <div class = "djangotwo">
+            {% if access_records %}
+            <table>
+                <thead>
+                    <th>Site Name</th>
+                    <th>Date Accessed</th>
+                </thead>
+                {% for person in access_records %}
+                    <tr>
+                        <td>{{ person.name }}</td>
+                        <td>{{ person.date }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            {% else %}
+            <p>NO ACCESS RECORDS FOUND!</p>
+            {% endif %}
+        </div>
+    </body>
+</html>

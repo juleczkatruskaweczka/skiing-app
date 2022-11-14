@@ -10,7 +10,7 @@ random_temperature = random.randint(-10, 8)
 random_wind = random.randint(0, 50)
 
 current_weather = Weather(random_weather, random_wind, random_temperature)
-print(current_weather.weather + ', ' + str(current_weather.wind) + ', ' + str(current_weather.temperature))
+print("Pogoda: "+current_weather.weather + ', ' + str(current_weather.wind) + ', ' + str(current_weather.temperature))
 
 instructor1 = Instructor('Zielony', 'Teletubiś', '090909090')
 instructor2 = Instructor('Fioletowy', 'Teletubiś', '777888999')

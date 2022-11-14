@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>Instruktorzy</title>
+    </head>
+    <body>
+        <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+        <h1>Hej! </h1>
+        <h2>Wprowadź nowego instruktora</h2>
+        <div class="container">
+            <form method="POST">
+                {{form.as_p}}
+                {% crsf_token %}
+                <input type="Submit" class="btn btn-primary" value="Potwierdź"  >
+            </form>
+        </div>
+    </body>
+</html>
