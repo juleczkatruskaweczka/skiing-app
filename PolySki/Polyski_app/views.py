@@ -30,7 +30,6 @@ def form_name_view(request):
             )
         form=forms.FormName()
 
-
     context = {'form': form, 'users': users_list}
     return render(request,'users.html',context)
 
