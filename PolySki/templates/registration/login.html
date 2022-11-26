@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+{% load static %}
+<link rel="stylesheet" href = "{% static 'css/login.css'%}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Michroma">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  </head>
+
+<body>
+  <div class="logo">PolySki</div>
+    <div class="rectangle-1"><span class="welcome"><h2> Witamy w PolySki, zaloguj się</h2></span>
+  <form method="post">
+    {% csrf_token %} <!-- bezpieczeństwo danych -->
+    {{ form.as_p }}
+    <button type="submit">Zaloguj się</button>
+</form>
+</div>
+</body>
+</html>

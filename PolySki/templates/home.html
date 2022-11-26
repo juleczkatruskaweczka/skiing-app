@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+{% load static %}
+        <html>
+          <head>
+            <link rel="stylesheet" href = "{% static 'css/style.css'%}">
+               <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Michroma">
+               <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+             <meta charset="utf-8">
+               <title></title>
+
+          </head>
+          <body>
+                 <!-- Pasek boczny-->
+          <div class="blue-rectangle">
+            <p><div class="logo">PolySki</p></div>
+
+            <br/><hr  size="1" width=100% color="#d7edff">
+
+            <!--<div class="wrapper">
+              <ui class="mainMenu">
+               <li> <a href="#" class="trails">
+                <i class="fa fa-road fa-3x"></i>
+                <span class="sidenav">Trasy</span>
+            </a>
+             <div class="subMenu">
+                <a href="">item-1</a>
+                <a href="">item-2</a>
+                <a href="">item-3</a>
+               </div>
+                </li> -->
+                <li> <a href="#">
+                  <i class="fa fa-id-card fa-3x"></i>
+                  <span class="sidenav">Instruktorzy</span>
+              </a>
+                  </li>
+                  <li> <a href="#">
+                    <i class="fa fa-snowflake-o fa-3x"></i>
+                    <span class="sidenav">Pogoda</span>
+                </a>
+                {% if user.is_authenticated %}
+                    </li>
+                    <li> <a href="{% url 'logout' %}">
+                    <i class="fa fa-sign-out fa-3x" style="margin-top:400px;"></i>
+                      <span class="sidenav">Wyloguj się</span>
+                  </a> {%else%} </li>
+                  <li> <a href="{% url 'login' %}">
+                  <i class="fa fa-group fa-3x" style="margin-top:400px;"></i>
+                    <span class="sidenav">Kliknij, aby się zalogować</span>
+                </a>
+
+                  {% endif %}
+                      </li>
+
+           </div>
+                <!-- Pasek u góry-->
+           <div class="top-rectangle">
+            {% if user.is_authenticated %}
+             <span class="hello">Witaj, {{user.username}}!</span>
+             <span class="account">{{user.username}}</span>
+             {%else%}  <span class="hello">Witaj, gościu!</span>
+             {% endif %}
+             <img src="{% static "images/narciarz-1.png" %}" alt="Narciarz" style="position: relative;bottom:10px;left:62%;width:132px;height:132px;">
+           </div>
+
+           <img src="{% static "images/arcydzielo2.png" %}" alt="Góra" style="width:60%;height:77%;margin-left:25%;margin-top:65px;">
+
+           <!-- Otwarte trasy-->
+
+          <div class="rectangle"><i class="fa fa-map fa-3x" style="position:relative;z-index:2;margin-left:380px;right:1%;bottom:670px"></i>
+            <a href="#"><span class="opened-trails">Otwarte trasy</span></a>
+             <i class="fa fa-angle-right fa-2x" style="position:relative;z-index:3;right:140px;bottom:675px"></i>
+
+             <hr  style="position:relative;bottom:835px;left:349px;z-index:2;" size="0.5" width="400" color="#d7edff">
+            <p id="number" style="left:37%;bottom:820px;z-index:2">2</p>
+           <span class="sum">Łączna ilość tras: 3</span>
+          </div>
+
+           <!-- Dostępni instruktorzy-->
+
+          <div class="rectangle2"><i class="fa fa-user fa-3x" style="position:relative;z-index:2;left:898px;bottom:1006px"></i>
+            <a href="#"><span class="available-instructors">Dostępni instruktorzy</span></a>
+             <i class="fa fa-angle-right fa-2x" style="position:relative;z-index:3;left:780px;bottom:1008px;"></i>
+
+             <hr  style="position:relative;bottom:1165px;left:885px;z-index:2;color:#2e5090;" size="2" width="400" >
+             <p id="number2" style="left:1070px;bottom:1153px;z-index:2">3</p>
+            <span class="sum2">Łączna ilość instruktorów: 4</span>
+           </div>
+
+           <!-- Słoneczko-->
+
+           <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+             <img src="https://i.pinimg.com/564x/27/d1/0f/27d10f4e51956aaa6a608aa382f7c527.jpg" style="position:relative;bottom:1197px;left:20%;" alt="Słoneczko Teletubiś" width="270px" height="270px">
+           </a>
+
+          <!-- Pogoda -->
+
+         <a href="#"><div class="rectangle3">
+         <span class="rectangle-weather">Pogoda</span>
+         <p id="weather-condition">Pochmurnie</p>
+         <i class="fa fa-cloud fa-5x" style="position:relative;left:40px;top:25px"></i>
+         <p style="font-weight:bold;font-size:48px;color:#d7edff;position:relative;left:160px;bottom:55px">-1°C</p>
+         <p id="sum3">Średnia pogoda w ciągu dnia: 0°C</p>
+         </div>
+        </a>
+
+
+          </body>
+
+
+        </html>

@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+{% load static %}
+<link rel="stylesheet" href = "{% static 'css/login.css'%}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Michroma">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  </head>
+
+<body>
+  <div class="logo">PolySki</div>
+    <div class="rectangle-1"><span class="welcome"><h2> Zostałeś wylogowany</h2></span>
+  <form method="post">
+    {% csrf_token %} <!-- bezpieczeństwo danych -->
+    {{ form.as_p }}
+    <button type="submit"><a href="{% url 'login' %}" class="button">Zaloguj się</button></a>
+    <button type="submit">Zarejestruj się</button>
+    <button type="submit"><a href="/home" class="button">Gość</button></a>
+    <br>
+    <img src="https://s3-prod.dogtopia.com/wp-content/uploads/2016/02/photo-1520741412100-24cd6c2832e5-570x380.jpeg" alt="Piesek" width="500px" height="310px">
+</form>
+</div>
+</body>
+</html>
