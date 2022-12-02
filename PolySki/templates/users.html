@@ -8,33 +8,23 @@
     <body>
         <link rel="stylesheet" href="{% static 'css/style2.css' %}">
         <div class="container">
-            <form align="center" class="square-input" method="POST">
-                <h1 align="center" class="button" >Dodawanie nowego instruktora</h1>
-                {{form.as_p}}
-                {% csrf_token %}
-                <input type="Submit" class="button" value="Potwierdź"  >
-            </form>
+
         <h1 align="center">Lista obecnych instruktorów</h1>
             {% if user %}
             <table align="center" class="table1">
                 <thead>
 
                     <th>Imie</th>
-                    <th>Nazwisko</th>
                     <th>Email</th>
-                    <th>Opis</th>
 
                 </thead>
 
                 {% for person in users %}
                     <tr>
-                        <td>{{ person.imie }}</td>
-                        <td>{{ person.nazwisko }}</td>
+                        <td>{{ person.username }}</td>
                         <td>{{ person.email }}</td>
-                        <td>{{ person.opis }}</td>
                     </tr>
                 {% endfor %}
-
             </table>
             {% else %}
             <p>NO USERS FOUND!</p>

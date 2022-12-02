@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+{% load static %}
+<link rel="stylesheet" href = "{% static 'css/login.css'%}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Michroma">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  </head>
+
+<body>
+
+<div class="logo">PolySki</div>
+    <div class="rectangle-1"><span class="welcome1">
+		<h2> Witamy w PolySki</h2>
+		<h1> Zarejestruj się</h1></span>
+
+		    <form class="form-signin" method="POST">
+				{% csrf_token %}
+				<div class="rejestration">
+					<div><input type="email" name="email" id="inputEmail" class="form-control" placeholder="Adres email" required autofocus></div>
+					<div><input type="text" name="username" id="inputUsername" class="form-control" placeholder="Nazwa użytkownika" required></div>
+					<div><input type="password" name="password1" id="inputPassword1" class="form-control" placeholder="Hasło" required></div>
+					<div><input type="password" name="password2" id="inputPassword2" class="form-control" placeholder="Powtórz hasło" required></div>
+				</div>
+					{% for field in registration_form %}
+					<p>
+					{% for error in field.errors %}
+					<p style="color: red">{{ error }}</p>
+					{% endfor %}
+					</p>
+					{% endfor %}
+					{% if registration_form.non_field_errors %}
+					<div style="color: red">
+						<p>{{registration_form.non_field_errors}}</p>
+					</div>
+
+					{% endif %}
+
+				<button class="button2" type="submit">Zarejestruj sie </button>
+
+				</form>
+		  </div>
+		</div>
+
+	</div>
+</div>
+
+
+</body>
+</html>
