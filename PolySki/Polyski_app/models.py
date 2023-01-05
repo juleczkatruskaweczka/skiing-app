@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.hashers import make_password
+from multiselectfield import MultiSelectField
 
 # Create your models here.
 class UserManager(BaseUserManager):
@@ -45,3 +46,50 @@ class user(AbstractBaseUser):
         return self.is_admin
     def has_module_perms(self, app_label):
         return True
+
+class Tracks(models.Model):
+    name = models.CharField(max_length=100)
+    LEVEL_OF_DIFFICULTY = [
+        ('łatwą', 'Łatwy'),
+        ('średnio-zaawansowaną', 'Średnio-zaawansowany'),
+        ('trudną', 'Zaawansowany'),
+    ]
+    level = models.CharField(
+        max_length=80,
+        choices=LEVEL_OF_DIFFICULTY,
+        default='łatwą',
+    )
+    length = models.CharField(max_length=100, default="1000 km")
+    temperature = models.CharField(
+        max_length=80,
+        default='dla wszystkich',
+        choices=[('dla wszystkich', 'Dla wszystkich'),
+                 ('< 10 °C', '< 10 °C'),
+                 ('< 0 °C', '< 0 °C'),
+                 ('< -5 °C', '< -5 °C')],
+    )
+    weather = MultiSelectField(
+        default='dla wszystkich',
+        choices=[('słonecznie', 'Słonecznie'),
+                 ('pochmurnie', 'Pochmurnie'),
+                 ('zamieć', 'Zamieć')],
+        max_length=80,
+    )
+    wind = models.CharField(
+        default='dla wszystkich',
+        max_length=80,
+        choices=[('dla wszystkich', 'Dla wszystkich'),
+                 ('< 50 km/h', '< 50 km/h'),
+                 ('< 25 km/h', '< 25 km/h'),
+                 ('< 5 km/h', '< 5 km/h')],
+    )
+    isopened = models.CharField(
+        default='weather',
+        max_length=80,
+        choices=[('weather', 'Zalezna od pogody'),
+                 ('Otwarta', 'Otwarta'),
+                 ('Zamknięta', 'Zamknięta'), ]
+    )
+
+    def __str__(self):
+        return self.name

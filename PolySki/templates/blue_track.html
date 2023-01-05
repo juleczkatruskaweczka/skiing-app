@@ -1,0 +1,82 @@
+{% for track in edit_form %}
+<!DOCTYPE html>
+{% load static %}
+        <html>
+          <head>
+            <link rel="stylesheet" href = "{% static 'css/style.css'%}">
+               <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Michroma">
+               <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+             <meta charset="utf-8">
+               <title></title>
+
+          </head>
+          <body>
+                 <!-- Pasek boczny-->
+          <div class="blue-rectangle">
+            <a href="/home"><p><div class="logo">PolySki</p></div></a>
+
+            <br/><hr  size="3" width=100% color="#d7edff">
+
+          <ul>
+                <li> <a href="/help">
+                  <i class="fa fa-id-card fa-3x"></i>
+                  <span class="sidenav">Instruktorzy</span>
+              </a>
+                  </li>
+                  <li> <a href="#">
+                    <i class="fa fa-snowflake-o fa-3x"></i>
+                    <span class="sidenav">Pogoda</span>
+                </a>
+                <li> <a href="/tracks">
+                    <i class="fa fa-road fa-3x"></i>
+                    <span class="sidenav">Trasy </span> </a>  </li>
+                    {%for track in edit_form%}<li> <a href="{% url 'name' track.name%}">
+                      <i class="fa fa-flag fa-2x"></i>
+                      <span class="sidenav" style="font-size:25px;">Trasa {{track.name}}</span>
+                     </a> </li>
+                          {%endfor%}
+
+                {% if user.is_authenticated %}
+                    </li>
+                    <li> <a href="{% url 'logout' %}">
+                    <i class="fa fa-sign-out fa-3x" style="margin-top:100%;"></i>
+                      <span class="sidenav">Wyloguj się</span>
+                  </a> {%else%} </li>
+                  <li> <a href="{% url 'login' %}">
+                  <i class="fa fa-group fa-3x" style="margin-top:100%;"></i>
+                    <span class="sidenav">Kliknij, aby się zalogować</span>
+                </a></li>
+
+                  {% endif %}
+              </ul>
+
+           </div>
+                <!-- Pasek u góry-->
+           <div class="top-rectangle">
+            {% if user.is_authenticated %}
+             <span class="hello">Witaj, {{user.username}}!</span>
+             <span class="account">{{user.username}}</span>
+             {%else%}  <span class="hello">Witaj, gościu!</span>
+             {% endif %}
+             <img src="{% static "images/narciarz-1.png" %}" alt="Narciarz" style="position: relative;bottom:10px;left:62%;width:132px;height:132px;">
+           </div>
+
+           <p style="position:relative;left:65%;top:5%;font-size: 34px;font-weight: bold;color: #4b68ab;">Trasa {{track.name}}:</p>
+           {%if closed == track.isopened%}<li><span class="sidenav" style="color: #ff3823;background: #c9f1fd;position:relative;left:85%;padding: 32px 32px 32px 32px;border-radius: 34px 34px 34px 34px;font-size: 20px;font-weight: bold;text-align: center;">
+            ZAMKNIĘTA</span></li>
+            {%elif opened == track.isopened%}<li><span style="color: #629c44;background: #c9f1fd;position:relative;left:85%;padding: 32px 32px 32px 32px;border-radius: 34px 34px 34px 34px;font-size: 20px;font-weight: bold;text-align: center;">
+              OTWARTA</span></li>>{%endif%}
+           <hr  size="6" width=36% style="position:relative;left:63%;top:70px;color: #4b68ab;">
+
+           <p style="position:absolute;left:22%;top:22%;font-size: 26px;color: #4b68ab;width:40%;text-align:center;">Trasa {{track.name}} jest trasą {{track.level}}. Jej długość wynosi {{track.length}}. Instruktorami, uczącymi na tej trasie są: Żółty Teletubiś, Zielony Teletubiś, Fioletowy Teletubiś, Czerwony Teletubiś. Jest otwarta w warunkach pogodowych: {{track.weather}} (pogoda), {{track.wind}} (wiatr), {{track.temperature}} (temperatura) </p>
+
+           <a href="/admin"><p style="position:absolute;left:22%;top:85%;font-size: 34px;font-weight: bold;color: #4b68ab;"><i class="fa fa-pencil fa-x"></i>Edytuj trasę</p></a>
+
+           <img src="{% static "images/arcydzielo3.png" %}" alt="Góra" style="width:60%;height:77%;margin-left:37%;margin-top:75px;"
+
+        </body>
+
+
+        </html>
+{%endfor%}
