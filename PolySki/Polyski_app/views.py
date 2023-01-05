@@ -22,8 +22,10 @@ def form_name_view(request):
 
 def home(request):
     count = user.objects.all().count()
+    count_track = Tracks.objects.filter(isopened='Otwarta').count()
+    all = Tracks.objects.all().count()
     form = Tracks.objects.filter()
-    context = {'count':count, 'edit_form':form}
+    context = {'count':count, 'edit_form':form, 'all':all, 'count_track':count_track}
     return render(request,'home.html',context)
 
 def blue_track(request, name=Tracks.name):
