@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+{% load static %}
+        <html lang="en" dir="ltr">
+          <head>
+            <link rel="stylesheet" href = "{% static 'css/style2.css'%}">
+               <link src="https://kit.fontawesome.com/a076d05399.js"></link>
+               <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Michroma">
+               <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+             <meta charset="utf-8">
+               <title></title>
+
+          </head>
+          <body>
+            {% block content %}
+                 <!-- Pasek boczny-->
+            <div class="blue-rectangle">
+                <a href ="/home">
+                    <p><div class="logo">PolySki</p></div>
+                    <br/><hr  size="1" width=100% color="#d7edff">
+                </a>
+            <!--<div class="wrapper">
+              <ui class="mainMenu">
+               <li> <a href="#" class="trails">
+                <i class="fa fa-road fa-3x"></i>
+                <span class="sidenav">Trasy</span>
+            </a>
+             <div class="subMenu">
+                <a href="">item-1</a>
+                <a href="">item-2</a>
+                <a href="">item-3</a>
+               </div>
+                </li> -->
+                <li> <a href="/help">
+                  <i class="fa fa-id-card fa-3x"></i>
+                  <span class="sidenav">Instruktorzy</span>
+              </a>
+                  </li>
+                  <li> <a href="#">
+                    <i class="fa fa-snowflake-o fa-3x"></i>
+                    <span class="sidenav">Pogoda</span>
+                </a>
+                        <li> <a href="/events">
+                  <i class="fa fa-calendar fa-3x"></i>
+                  <span class="sidenav">Wydarzenia</span>
+                {% if user.is_authenticated %}
+                </li>
+                    <li> <a href="{% url 'logout' %}">
+                    <i class="fa fa-sign-out fa-3x" style="margin-top:400px;"></i>
+                      <span class="sidenav">Wyloguj się</span>
+                  </a> {%else%} </li>
+                  <li> <a href="{% url 'login' %}">
+                  <i class="fa fa-group fa-3x" style="margin-top:400px;"></i>
+                    <span class="sidenav">Kliknij, aby się zalogować</span>
+                </a>
+
+                  {% endif %}
+                      </li>
+
+           </div>
+                <!-- Pasek u góry-->
+            <div class="top-rectangle">
+            {% if user.is_authenticated %}
+             <span class="hello">Witaj, {{user.username}}!</span>
+             <span class="account">{{user.username}}</span>
+             {%else%}  <span class="hello">Witaj, kliencie!</span>
+             {% endif %}
+             <img src="{% static 'images/narciarz-1.png' %}" alt="Narciarz" style="position: relative;bottom:10px;left:62%;width:132px;height:132px;">
+           </div>
+         <div class="button4">
+                    <button  type="sumbit" class="btn4" onclick="openPopup()">Rezerwuj </button>
+                    <div class="popup" id="popup">
+                             <h2 >Dodaj wydarzenie </h2 >
+                             <form class="f1" method="POST" align="center">
+                                     {{ form.as_p}}
+                                     {% csrf_token %}
+                                    <input class="btn12"onclick="closePopup()" type="submit" value="Zatwierdz" >
+
+                             </form>
+                            <button type="button" onclick="closePopup()">Anuluj</button>
+
+                    </div>
+            <div >
+                            <button type="button" onclick="closePopup()">Anuluj</button>
+                    </div>
+                    <h1 class="listainstruktorow " align="center">Lista instruktorów</h1>
+                        {% if user %}
+                        <table class="container" align="right">
+                            <thead>
+                                <th>Imie</th>
+                                <th>Email</th>
+                                <th style="width:30%;">Stan</th>
+                                {% if not user.is_authenticated %}
+                                <th style="width:20%;">Rezerwacje</th>
+                                {% endif %}
+                            </thead>
+
+                            {% for person in users %}
+                                <tr>
+                                    <td id="imie">
+                                        {{ person }}
+                                    </td>
+                                    <td>{{ person.email }}</td>
+                                    <td>
+                                        {% if person.is_free  %}
+                                            Dostępny
+                                        {% else %}
+                                            Chwilowo niedostępny
+                                        {% endif %}
+
+                                    </td>
+                                    {% if not user.is_authenticated %}
+                                    <td align="center">
+                                        {% if person.is_free  %}
+                                        <button  type="sumbit" class="btn" onclick="openPopup()">Rezerwuj </button>
+                                            <div class="popup" id="popup">
+                                                <h2 >Rezerwacja instruktora</h2 >
+                                                <h5 > {{ person }}  </h5 >
+
+                                                <button type="button" onclick="closePopup()">Potwierdź</button>
+                                            </div>
+                                        {% else %}
+                                        <button  type="sumbit" class="btn" style="color:red">Rezerwuj </button>
+                                                    <div class="popup" id="popup">
+                                                        <h2 >Rezerwacja instruktora </h2 >
+                                                        <h5 >{{ person }} </h5 >
+                                                        <button type="button" onclick="closePopup()">Potwierdź</button>
+                                                    </div>
+                                        {% endif %}
+                                            <script>
+                                                let popup = document.getElementById("popup");
+                                                function openPopup() {
+                                                  popup.classList.add("open-popup");
+                                                }
+                                                function closePopup() {
+                                                  popup.classList.remove("open-popup");
+                                                }
+
+                                               </script>
+                                    </td>
+                                    {% endif %}
+
+                                </tr>
+                            {% endfor %}
+
+                        </table>
+
+
+                                        <script>
+                                        var table = document.getElementsByTagName('table')[0],
+                                        rows = table.getElementsByTagName('tr'),
+                                        text = 'textContent' in document ? 'textContent' : 'innerText';
+                                        console.log(text);
+
+                                        for (var i = 1, len = rows.length; i < len; i++){
+                                            rows[i].children[0][text] = i + ': ' + rows[i].children[0][text];
+                                        }
+                                        </script>
+                        {% endif %}
+
+
+            </div>
+
+                        <script>
+                        let popup = document.getElementById("popup");
+                        function openPopup() {
+                          popup.classList.add("open-popup");
+                        }
+                        function closePopup() {
+                          popup.classList.remove("open-popup");
+                        }
+
+                       </script>
+                {% endblock content %}
+
+              </body>
+        </html>

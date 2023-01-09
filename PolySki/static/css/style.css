@@ -7,11 +7,12 @@
     font-family: 'Lato';
 }html{
 	height: 100vh;
+	width:100vw;
 	}
 	body{
 		width: 100%;
 		height: 100vh;
-		background-color: #ffffff;
+		background-color: white;
 		font-family: 'Lato';
 		position: fixed;
 		top: 0;
@@ -19,7 +20,7 @@
 		}
 .logo {
 	width: 100%;
-	height: 13%;
+	height: 17%;
 	padding: 8px 8px 8px 8px;
 	opacity: 75%;
 	color: #d7edff;
@@ -29,10 +30,9 @@
 	border-style: solid;
 	font-family: "Michroma";
 	font-weight: bold;
-	font-size: 300%;
+	font-size: 370%;
 	font-style: italic;
 	line-height: 1.3;
-	text-align: center;
 }
 .blue-rectangle {
 	width: 20%;
@@ -43,7 +43,7 @@
 	border-color: #6781c6;
 	border-width: 1px;
 	border-style: solid;
-        transition: all 0.5 ease
+    transition: all 0.5 ease
 }
 hr {
 	border-color: #d7edff;
@@ -70,7 +70,7 @@ i {
 }
 .top-rectangle {
 	width: 100%;
-	height: 16%;
+	height: 18%;
 	padding: 8px 8px 8px 8px;
 	background: #bbd1ff;
 	border-color: #bbd1ff;
@@ -79,14 +79,14 @@ i {
 }
 .hello {
 	width: 100%;
-	height: 10%;
+	height: 20%;
 	color: #2e5090;
 	font-family: "Lato";
 	font-weight: bold;
-	font-size: 320%;
+	font-size: 340%;
 	position: relative;
-bottom: 55px;
-left: 22%;
+    bottom: 50px;
+    left: 22%;
 }
 .account {
 	width: 214px;
@@ -123,6 +123,35 @@ left: 22%;
 	background: #bbd1ff;
 	font-weight: bold;
   }
+
+        th{
+            color:black;
+            border:2px solid grey
+        }
+        td{
+            color:black;
+            border:2px solid grey;
+        }
+        h1{
+            color: black;
+            font-size:24px;
+        }
+        h2{
+            color: skyblue;
+        }
+
+        table,th,td{
+            font-color: black;
+            border: 2px solid grey;
+        }
+
+        .button{
+            font-size:18px;
+        }
+        .table1{
+        font-size:18px;
+        }
+   }
   .opened-trails {
 	width: 282px;
 	height: 48px;
@@ -199,7 +228,7 @@ left: 22%;
 	transition: all 0.6s;
 	position: relative;
 	bottom: 1019px;
-	left: 830px;
+	left: 1030px;
 	z-index: 1;
   }
   .rectangle2 a:hover {
@@ -226,7 +255,7 @@ left: 22%;
 .rectangle3 {
 	display: inline-block;
 	height: 290px;
-	width: 310px;
+	width: 350px;
 	background: #2e5090;
 	border-radius: 34px 34px 34px 34px;
 	padding: 8px 8px 8px 8px;
@@ -238,7 +267,7 @@ left: 22%;
 }
 .rectangle-weather {
 	display: inline-block;
-	width: 310px;
+	width: 350px;
 	height: 53px;
 	padding: 8px 8px 8px 8px;
 	background: #4b68ab;
@@ -283,8 +312,120 @@ left: 22%;
 	background: #6781c6;
 	font-weight: bold;
   }
+.container{
+	font-family: "Lato";
+    font-color:blue;
+    font-size:24px;
+    position: relative;
+    left: -15%;
+    bottom: -100px
 
- /* .wrapper{
+}
+.listainstruktorow {
+    font-color: blue;
+  position: relative;
+  left: 200px;
+  top:20px;
+}
+.btn{
+    align: center;
+    padding: 5px 30px;
+    background: skyblue;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    font-size:30px;
+    font-weight: 500;
+    border-radius: 25px;
+}
+.popup{
+    border: 2px solid black;
+    width: 600px;
+    height: 300px;
+    background: skyblue;
+    border-radius: 6px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-color: white;
+    visibility: hidden;
+    font-size:30px;
+}
+.popup h2{
+    color: white;
+}
+.popup button{
+    width: 80%;
+    margin-top: 200px;
+    padding: 10px 0;
+    background: green;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size:30px;
+
+    border-radius: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.open-popup{
+    visibility: visible;
+
+}
+.form{
+    position: relative;
+    margin-top: 550px;
+    left: 650px ;
+    width: 600px;
+    height: 110px;
+    padding: 10px 10px 10px 10px;
+    background: #6781c6;
+	color: #ffffff;
+    border-color: #2e5090;
+	border-width: 6px;
+	border-style: solid;
+	border-radius: 30px 30px 30px 30px;
+	font-size:30px;
+}
+#id_wolny {
+    width: 100px;
+    height: 40px;
+    font-size: 30px;
+}
+.btn12{
+    font-size: 40px;
+}
+.input-group{
+     position: relative;
+        margin-top: 550px;
+        left: 1050px ;
+        align: center;
+        padding: 5px 30px;
+        background: skyblue;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+        font-size: 22px;
+        font-weight: 500;
+        border-radius: 30px;
+}
+.btn4{
+    position: relative;
+    margin-top: 40px;
+    left: 650px ;
+    align: center;
+    padding: 5px 30px;
+    background: skyblue;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 500;
+    border-radius: 30px;
+}
+
+/* .wrapper{
     position: absolute;
     top: 100%;
     left: 100%;
