@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from Polyski_app.views import form_name_view,home, register_view,events
+from Polyski_app.views import form_name_view,home, register_view,events,blue_track,tracks
 from django.contrib.auth import views as auth_views
+from Polyski_app.models import Tracks
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +26,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
     path('register/',register_view, name='register'),
     path('home/',home),
-    path('events/',events)
+    path('events/',events),
+    path('tracks/', tracks),
+    path('track/<str:name>/', blue_track, name='name'),
 ]

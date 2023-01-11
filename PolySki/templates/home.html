@@ -32,8 +32,10 @@
                 <li> <a href="/help">
                   <i class="fa fa-id-card fa-3x"></i>
                   <span class="sidenav">Instruktorzy</span>
-              </a>
-                  </li>
+                    </a></li>
+                <li> <a href="/tracks">
+                    <i class="fa fa-road fa-3x"></i>
+                    <span class="sidenav">Trasy </span> </a>  </li>
                   <li> <a href="#">
                     <i class="fa fa-snowflake-o fa-3x"></i>
                     <span class="sidenav">Pogoda</span>
@@ -42,7 +44,7 @@
                   <i class="fa fa-calendar fa-3x"></i>
                   <span class="sidenav">Wydarzenia</span>
                 {% if user.is_authenticated %}
-                </li>
+                    </li>
                     <li> <a href="{% url 'logout' %}">
                     <i class="fa fa-sign-out fa-3x" style="margin-top:400px;"></i>
                       <span class="sidenav">Wyloguj się</span>
@@ -74,18 +76,18 @@
             <a href="#"><span class="available-instructors" style="color: white">Otwarte trasy</span></a>
              <i class="fa fa-angle-right fa-2x" style="position:relative;z-index:3;right:240px;bottom:675px"></i>
              <hr  style="position:relative;bottom:835px;left:449px;z-index:2;" size="0.5" width="400" color="#d7edff">
-            <p id="number" style="left:32%;bottom:820px;z-index:2">2</p>
-           <span class="sum"style="left:27%;">Łączna ilość tras: 5</span>
+            <p id="number" style="left:32%;bottom:820px;z-index:2">{{all}}</p>
+           <span class="sum"style="left:27%;">Łączna ilość tras: {{count_track}}</span>
           </div>
 
            <!-- Dostępni instruktorzy.html-->
 
-          <div class="rectangle2"><i class="fa fa-user fa-3x" style="position:relative;z-index:2;left:1098px;bottom:1006px"></i>
+          <div class="rectangle2"><i class="fa fa-user fa-3x" style="position:relative;z-index:2;left:898px;bottom:1006px"></i>
             <a href="/help"><span class="available-instructors">Dostępni instruktorzy</span></a>
-             <i class="fa fa-angle-right fa-2x" style="position:relative;z-index:3;left:980px;bottom:1008px;"></i>
-             <hr  style="position:relative;bottom:1165px;left:1085px;z-index:2;color:#2e5090;" size="2" width="400" >
-             <p id="number2" style="left:1270px;bottom:1153px;z-index:2">{{ nowactive}}</p>
-            <span class="sum2"style="left:65%;">Łączna ilość instruktorów: {{ count }}</span>
+             <i class="fa fa-angle-right fa-2x" style="position:relative;z-index:3;left:780px;bottom:1008px;"></i>
+             <hr  style="position:relative;bottom:1165px;left:885px;z-index:2;color:#2e5090;" size="2" width="400" >
+             <p id="number2" style="left:1070px;bottom:1153px;z-index:2">{{ nowactive}}</p>
+            <span class="sum2">Łączna ilość instruktorów: {{ count }}</span>
            </div>
 
            <!-- Słoneczko-->
@@ -98,10 +100,10 @@
 
          <a href="#"><div class="rectangle3">
          <span class="rectangle-weather">Pogoda</span>
-         <p id="weather-condition">Pochmurnie</p>
+         <p id="weather-condition">{{pogoda}}</p>
          <i class="fa fa-cloud fa-5x" style="position:relative;left:40px;top:25px"></i>
          <p style="font-weight:bold;font-size:48px;color:#d7edff;position:relative;left:160px;bottom:55px">{{ temp }}°C</p>
-         <p id="sum3">Średnia pogoda w ciągu dnia: 0°C</p>
+         <p id="sum3">Wiatr {{wind}} km/h</p>
          </div>
         </a>
 

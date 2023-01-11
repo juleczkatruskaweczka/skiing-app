@@ -70,7 +70,6 @@
                                 <th>Data</th>
                                 <th>Czas trwania</th>
                                 <th>Zostało czasu</th>
-                                <th>Ukonczone</th>
 
                             </thead>
                             {% for event in events %}
@@ -85,7 +84,6 @@
                                         <td id="event-box" type="datetime">{{ event.date }}</td>
                                         <td id="length">{{ event.dlugosc  }} minut </td>
                                         <td id="countdown-box"> </td>
-                                        <td id="box">{{ event.koniec }} </td>
 
                                  </tr>
                             {% endfor %}

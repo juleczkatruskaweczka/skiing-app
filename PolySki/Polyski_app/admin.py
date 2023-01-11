@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from Polyski_app.models import user, event
+from Polyski_app.models import user, event, Tracks
 from django.contrib.auth.models import Group
 from django.contrib import admin
 
@@ -14,3 +14,4 @@ class AccountAdmin(UserAdmin):
 admin.site.register(user, AccountAdmin)
 admin.site.register(event)
 admin.site.unregister(Group)
+admin.site.register(Tracks)

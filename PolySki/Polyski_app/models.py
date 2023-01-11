@@ -4,8 +4,7 @@ from django.contrib.auth.hashers import make_password
 import  datetime
 from datetime import timedelta,datetime
 from django.utils import timezone
-import pytz
-
+from multiselectfield import MultiSelectField
 # Create your models here.
 class UserManager(BaseUserManager):
     def create_user(self, username, email, password = None):
@@ -54,7 +53,7 @@ class user(AbstractBaseUser):
         return True
 class event(models.Model):
     name = models.CharField(max_length=200)
-    data = models.DateTimeField(null=True,blank=True)
+    data = models.DateTimeField()
     dlugosc = models.IntegerField(null=True,blank=True)
     instruktor = models.ManyToManyField(user,null=True,blank=True)
     trwa = models.BooleanField(default=False)
@@ -65,7 +64,6 @@ class event(models.Model):
     def koniec(self):
         koniec = self.data+timedelta(minutes=self.dlugosc or 0)
         now = datetime.now() + timedelta(hours=1)
-
         if now<koniec and now>self.data:
             self.trwa = True
             self.save()
@@ -76,3 +74,49 @@ class event(models.Model):
             return 0
 
 
+class Tracks(models.Model):
+    name = models.CharField(max_length=100)
+    LEVEL_OF_DIFFICULTY = [
+        ('łatwą', 'Łatwy'),
+        ('średnio-zaawansowaną', 'Średnio-zaawansowany'),
+        ('trudną', 'Zaawansowany'),
+    ]
+    level = models.CharField(
+        max_length=80,
+        choices=LEVEL_OF_DIFFICULTY,
+        default='łatwą',
+    )
+    length = models.CharField(max_length=100, default="1000 km")
+    temperature = models.CharField(
+        max_length=80,
+        default='dla wszystkich',
+        choices=[('dla wszystkich', 'Dla wszystkich'),
+                 ('< 10 °C', '< 10 °C'),
+                 ('< 0 °C', '< 0 °C'),
+                 ('< -5 °C', '< -5 °C')],
+    )
+    weather = MultiSelectField(
+        default='dla wszystkich',
+        choices=[('słonecznie', 'Słonecznie'),
+                 ('pochmurnie', 'Pochmurnie'),
+                 ('zamieć', 'Zamieć')],
+        max_length=80,
+    )
+    wind = models.CharField(
+        default='dla wszystkich',
+        max_length=80,
+        choices=[('dla wszystkich', 'Dla wszystkich'),
+                 ('< 50 km/h', '< 50 km/h'),
+                 ('< 25 km/h', '< 25 km/h'),
+                 ('< 5 km/h', '< 5 km/h')],
+    )
+    isopened = models.CharField(
+        default='weather',
+        max_length=80,
+        choices=[('weather', 'Zalezna od pogody'),
+                 ('Otwarta', 'Otwarta'),
+                 ('Zamknięta', 'Zamknięta'), ]
+    )
+
+    def __str__(self):
+        return self.name
