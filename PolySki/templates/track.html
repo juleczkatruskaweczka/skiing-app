@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static %}
+        <html>
+          <head>
+            <link rel="stylesheet" href = "{% static 'css/style.css'%}">
+               <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Michroma">
+               <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+             <meta charset="utf-8">
+               <title></title>
+
+          </head>
+          <body>
+                 <!-- Pasek boczny-->
+          <div class="blue-rectangle">
+            <a href="/home"><p><div class="logo">PolySki</p></div></a>
+
+            <br/><hr  size="3" width=100% color="#d7edff">
+
+          <ul>
+                <li> <a href="/help">
+                  <i class="fa fa-id-card fa-3x"></i>
+                  <span class="sidenav">Instruktorzy</span>
+              </a>
+                  </li>
+                  <li> <a href="#">
+                    <i class="fa fa-snowflake-o fa-3x"></i>
+                    <span class="sidenav">Pogoda</span>
+                </a>
+                <li> <a href="/tracks">
+                    <i class="fa fa-road fa-3x"></i>
+                    <span class="sidenav">Trasy </span> </a>  </li>
+                    {%for track in edit_form%}<li> <a href="{% url 'name' track.name%}">
+                      <i class="fa fa-flag fa-2x"></i>
+                      <span class="sidenav" style="font-size:25px;">Trasa {{track.name}}</span>
+                     </a> </li>
+                          {%endfor%}
+
+                {% if user.is_authenticated %}
+                    </li>
+                    <li> <a href="{% url 'logout' %}">
+                    <i class="fa fa-sign-out fa-3x" style="margin-top:70%;"></i>
+                      <span class="sidenav">Wyloguj się</span>
+                  </a> {%else%} </li>
+                  <li> <a href="{% url 'login' %}">
+                  <i class="fa fa-group fa-3x" style="margin-top:70%;"></i>
+                    <span class="sidenav">Kliknij, aby się zalogować</span>
+                </a></li>
+
+                  {% endif %}
+              </ul>
+
+           </div>
+                <!-- Pasek u góry-->
+           <div class="top-rectangle">
+            {% if user.is_authenticated %}
+             <span class="hello">Witaj, {{user.username}}!</span>
+             <span class="account">{{user.username}}</span>
+             {%else%}  <span class="hello">Witaj, gościu!</span>
+             {% endif %}
+             <img src="{% static "images/narciarz-1.png" %}" alt="Narciarz" style="position: relative;bottom:10px;left:62%;width:132px;height:132px;">
+           </div>
+           {%for track in edit_form%}
+           <p style="position:relative;left:25%;top:5%;font-size: 34px;font-weight: bold;color: #1d1238;">Trasa {{track.name}}:</p>
+           {%if track.isopened == closed%}<li><span class="sidenav" style="color: #ff3823;background: #c9f1fd;position:relative;left:45%;top:80%;padding: 32px 32px 32px 32px;border-radius: 34px 34px 34px 34px;font-size: 17px;font-weight: bold;text-align: center;">
+            ZAMKNIĘTA</span></li><br><br>
+            {%elif track.isopened == opened%}<li><span style="color: #629c44;background: #c9f1fd;position:relative;left:45%;top:60%;padding: 32px 32px 32px 32px;border-radius: 34px 34px 34px 34px;font-size: 17px;font-weight: bold;text-align: center;">
+              OTWARTA</span></li><br><br>{%endif%} {%endfor%}
+           <span class="track_sum" style="position:absolute;left:67%;font-size: 210%;bottom:67%;">Łączna ilość otwartych tras: </span>
+           <hr  size="5" width=37% style="position:absolute;left:62%;bottom:65%"color="#2e5090"><span class="track_sum" style="position:absolute;left:80%;font-size: 270%;bottom:57%;"><br>{{count}}</span>
+
+           <img src="{% static "images/skiing-pic.webp" %}" alt="Góra" style="position:fixed;width:90%;height:90%;top:10%;left:20%;z-index:-100;"
+
+        </body>
+
+
+        </html>
