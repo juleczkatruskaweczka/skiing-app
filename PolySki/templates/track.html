@@ -61,15 +61,22 @@
              <img src="{% static "images/narciarz-1.png" %}" alt="Narciarz" style="position: relative;bottom:10px;left:62%;width:132px;height:132px;">
            </div>
            {%for track in edit_form%}
-           <p style="position:relative;left:25%;top:5%;font-size: 34px;font-weight: bold;color: #1d1238;">Trasa {{track.name}}:</p>
-           {%if track.isopened == closed%}<li><span class="sidenav" style="color: #ff3823;background: #c9f1fd;position:relative;left:45%;top:80%;padding: 32px 32px 32px 32px;border-radius: 34px 34px 34px 34px;font-size: 17px;font-weight: bold;text-align: center;">
-            ZAMKNIĘTA</span></li><br><br>
-            {%elif track.isopened == opened%}<li><span style="color: #629c44;background: #c9f1fd;position:relative;left:45%;top:60%;padding: 32px 32px 32px 32px;border-radius: 34px 34px 34px 34px;font-size: 17px;font-weight: bold;text-align: center;">
-              OTWARTA</span></li><br><br>{%endif%} {%endfor%}
+               <table class="container1" >
+                                <thead>
+                                    <th>Trasa</th>
+                                    <th>Stan</th>
+                                </thead>
+                                    <tr>
+                                        <td id="imie">{{track.name}}
+                                        </td>
+                                        <td>{{ track.isopened }}</td>
+                                    </tr>
+                   {% endfor %}}
+               </table>
            <span class="track_sum" style="position:absolute;left:67%;font-size: 210%;bottom:67%;">Łączna ilość otwartych tras: </span>
            <hr  size="5" width=37% style="position:absolute;left:62%;bottom:65%"color="#2e5090"><span class="track_sum" style="position:absolute;left:80%;font-size: 270%;bottom:57%;"><br>{{count}}</span>
 
-           <img src="{% static "images/skiing-pic.webp" %}" alt="Góra" style="position:fixed;width:90%;height:90%;top:10%;left:20%;z-index:-100;"
+           <img src="{% static 'images/skiing.jpg' %}" alt="Góra" style="position:fixed;width:90%;height:90%;top:10%;left:20%;z-index:-100;"
 
         </body>
 

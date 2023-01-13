@@ -9,8 +9,6 @@ from django.contrib.auth import login, authenticate
 from django.contrib.admin.widgets import AdminSplitDateTime,AdminDateWidget, AdminTimeWidget
 from django.views.generic import ListView, DetailView
 import requests, math, datetime
-import datetime as dt
-from datetime import timedelta
 from enum import Enum
 class weather(Enum):
     Słonecznie = 1
@@ -89,6 +87,7 @@ def register_view(request, *args, **kwargs):
             return redirect('login')
     return render(request,'registration/register.html',context)
 def events(request, *args, **kwargs):
+
     events_list = event.objects.order_by('-data')
     users_list = user.objects.order_by('email')
     form = EventForm(request.POST )
@@ -106,7 +105,27 @@ def blue_track(request, name=Tracks.name):
     return render(request,'blue_track.html',args)
 
 def tracks(request,name=Tracks.name):
+    BASE_URL = "https://api.openweathermap.org/data/2.5/weather?q="
+    API_KEY = "410eb23de6511ac456553a7d4905d23f"
+    CITY = "Karpacz"
+    url = BASE_URL + CITY + "&appid=" + API_KEY
     count = Tracks.objects.filter(isopened='Otwarta').count()
     form = Tracks.objects.filter()
+    response = requests.get(url).json()
+    temp = response['main']['temp'] - 273.15
+    temp = round(temp,1)
+    if temp < 6:
+        print(temp)
+    for t in Tracks.objects.all():
+        print(t.temperature)
+        temperatura = int(t.temperature.replace("< ",'').replace(" °C",''))
+        temp = 0
+        print(t.isopened)
+        if temperatura - 5 > temp:
+            t.isopened = "zamknieta"
+            t.save()
+        else:
+            t.isopened = "otwarta"
+            t.save()
     args={'edit_form':form, 'name':name, 'closed':'Zamknięta', 'opened':'Otwarta', 'count':count}
     return render(request,'track.html',args)

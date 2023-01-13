@@ -92,6 +92,7 @@ class Tracks(models.Model):
         default='dla wszystkich',
         choices=[('dla wszystkich', 'Dla wszystkich'),
                  ('< 10 °C', '< 10 °C'),
+                 ('< 5 °C', '< 5 °C'),
                  ('< 0 °C', '< 0 °C'),
                  ('< -5 °C', '< -5 °C')],
     )
