@@ -43,7 +43,7 @@ def form_name_view(request, *args, **kwargs):
     return render(request,'instruktorzy.html',context)
 def home(request):
     BASE_URL = "https://api.openweathermap.org/data/2.5/weather?q="
-    API_KEY = "410eb23de6511ac456553a7d4905d23f"
+    API_KEY = "ENTER YOUR API KEY"
     CITY = "Karpacz"
     url = BASE_URL + CITY+ "&appid=" + API_KEY
     count_track = Tracks.objects.filter(isopened='Otwarta').count()
