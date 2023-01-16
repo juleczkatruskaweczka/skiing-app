@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Polyski_app'
+    'Polyski_app',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [

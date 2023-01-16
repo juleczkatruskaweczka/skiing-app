@@ -55,7 +55,7 @@ class event(models.Model):
     name = models.CharField(max_length=200)
     data = models.DateTimeField()
     dlugosc = models.IntegerField(null=True,blank=True)
-    instruktor = models.ManyToManyField(user,null=True,blank=True)
+    instruktor = models.ManyToManyField(user,blank=True)
     trwa = models.BooleanField(default=False)
     def __str__(self):
         return str(self.name)
@@ -118,6 +118,6 @@ class Tracks(models.Model):
                  ('Otwarta', 'Otwarta'),
                  ('Zamknięta', 'Zamknięta'), ]
     )
-
+    instructors = models.ManyToManyField(user)
     def __str__(self):
         return self.name

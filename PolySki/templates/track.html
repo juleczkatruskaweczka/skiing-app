@@ -61,21 +61,18 @@
              <img src="{% static "images/narciarz-1.png" %}" alt="Narciarz" style="position: relative;bottom:10px;left:62%;width:132px;height:132px;">
            </div>
            {%for track in edit_form%}
-               <table class="container1" >
-                                <thead>
-                                    <th>Trasa</th>
-                                    <th>Stan</th>
-                                </thead>
-                                    <tr>
-                                        <td id="imie">{{track.name}}
-                                        </td>
-                                        <td>{{ track.isopened }}</td>
-                                    </tr>
+
+           <p style="position:relative;left:25%;top:5%;font-size: 34px;font-weight: bold;color: #4b68ab;">Trasa {{track.name}}:</p>
+           {%if closed == track.isopened%}<li><span class="sidenav" style="color: #ff3823;background: #c9f1fd;position:relative;left:45%;padding: 32px 32px 32px 32px;border-radius: 34px 34px 34px 34px;font-size: 20px;font-weight: bold;text-align: center;">
+            ZAMKNIĘTA</span></li><br>
+            {%elif opened == track.isopened%}<li><span style="color: #629c44;background: #c9f1fd;position:relative;left:45%;padding: 32px 32px 32px 32px;border-radius: 34px 34px 34px 34px;font-size: 20px;font-weight: bold;text-align: center;">
+              OTWARTA</span></li>>{%endif%}<br>
                    {% endfor %}}
                </table>
            <span class="track_sum" style="position:absolute;left:67%;font-size: 210%;bottom:67%;">Łączna ilość otwartych tras: </span>
-           <hr  size="5" width=37% style="position:absolute;left:62%;bottom:65%"color="#2e5090"><span class="track_sum" style="position:absolute;left:80%;font-size: 270%;bottom:57%;"><br>{{count}}</span>
+                 <hr  size="5" width=37% style="position:absolute;left:62%;bottom:65%"color="#2e5090"><span class="track_sum" style="position:absolute;left:80%;font-size: 270%;bottom:57%;"><br>{{count}}</span>
 
+                 <a href="/admin"><p style="position:absolute;left:22%;top:85%;font-size: 34px;font-weight: bold;color: #4b68ab;"><i class="fa fa-pencil fa-x"></i>Dodaj trasę</p></a>
            <img src="{% static 'images/skiing.jpg' %}" alt="Góra" style="position:fixed;width:90%;height:90%;top:10%;left:20%;z-index:-100;"
 
         </body>

@@ -69,7 +69,7 @@
               OTWARTA</span></li>>{%endif%}
            <hr  size="6" width=36% style="position:relative;left:63%;top:70px;color: #4b68ab;">
 
-           <p style="position:absolute;left:22%;top:22%;font-size: 26px;color: #4b68ab;width:40%;text-align:center;">Trasa {{track.name}} jest trasą {{track.level}}. Jej długość wynosi {{track.length}}. Instruktorami, uczącymi na tej trasie są: Żółty Teletubiś, Zielony Teletubiś, Fioletowy Teletubiś, Czerwony Teletubiś. Jest otwarta w warunkach pogodowych: {{track.weather}} (pogoda), {{track.wind}} (wiatr), {{track.temperature}} (temperatura) </p>
+           <p style="position:absolute;left:22%;top:22%;font-size: 26px;color: #4b68ab;width:40%;text-align:center;">Trasa {{track.name}} jest trasą {{track.level}}. Jej długość wynosi {{track.length}}. Instruktorami, uczącymi na tej trasie są: {%for instructor in track.instructors.all%} {{instructor}} {%endfor%}. Jest otwarta w warunkach pogodowych: {{track.weather}} (pogoda), {{track.wind}} (wiatr), {{track.temperature}} (temperatura) </p>
 
            <a href="/admin"><p style="position:absolute;left:22%;top:85%;font-size: 34px;font-weight: bold;color: #4b68ab;"><i class="fa fa-pencil fa-x"></i>Edytuj trasę</p></a>
 
