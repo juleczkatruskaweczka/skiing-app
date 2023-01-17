@@ -109,23 +109,42 @@ def tracks(request,name=Tracks.name):
     API_KEY = "410eb23de6511ac456553a7d4905d23f"
     CITY = "Karpacz"
     url = BASE_URL + CITY + "&appid=" + API_KEY
-    count = Tracks.objects.filter(isopened='Otwarta').count()
+    count = Tracks.objects.filter(isopened='otwarta').count()
     form = Tracks.objects.filter()
     response = requests.get(url).json()
     temp = response['main']['temp'] - 273.15
+    wind = response['wind']['speed'] * 3.6
     temp = round(temp,1)
-    if temp < 6:
-        print(temp)
+    wind = round(wind, 1)
+    wind = 0
+    temp = 20
+    id = response['weather'][0]['id']
+    id= 800
+    if id == 800:
+        pogoda = weather(1)
+    elif id <= 804 and id >= 801:
+        pogoda = weather(2)
+    elif id <= 232 and id >= 200 and id <= 731 and id >= 700:
+        pogoda = weather(3)
+    elif id <= 531 and id >= 500:
+        pogoda = weather(4)
+    elif id <= 622 and id >= 600:
+        pogoda = weather(5)
     for t in Tracks.objects.all():
-        print(t.temperature)
-        temperatura = int(t.temperature.replace("< ",'').replace(" °C",''))
-        temp = 0
-        print(t.isopened)
-        if temperatura - 5 > temp:
-            t.isopened = "Zamknięta"
-            t.save()
+        if not t.temperature == 'dla wszystkich' and not t.wind == 'dla wszystkich' :
+            temperatura = int(t.temperature.replace("> ",'').replace(" °C",''))
+            wiatr = int(t.wind.replace("< ",'').replace(" km/h",''))
+            stan = t.weather
+            print(stan)
+            print(pogoda)
+            if temperatura > temp or wind > wiatr or pogoda == stan:
+                t.isopened = "zamknieta"
+                t.save()
+            else:
+                t.isopened = "otwarta"
+                t.save()
         else:
-            t.isopened = "Otwarta"
+            t.isopened = "otwarta"
             t.save()
     args={'edit_form':form, 'name':name, 'closed':'Zamknięta', 'opened':'Otwarta', 'count':count}
     return render(request,'track.html',args)
